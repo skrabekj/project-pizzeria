@@ -173,7 +173,7 @@
           const productImages = thisProduct.imageWrapper.querySelectorAll('img.' + paramId + '-' + optionId);
           //console.log('proimg ', productImages);
           if(optionSelected) {
-            const image = thisProduct.data.images;
+            //const image = thisProduct.data.images;
             //console.log('img', image);
             for(let image of productImages){
               image.classList.add('active');
@@ -197,7 +197,9 @@
     initAmountWidget(){
       const thisProduct = this;
       thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
-      thisProduct.amountWidgetElem.addEventListener('updated', thisProduct.processOrder());
+      thisProduct.amountWidgetElem.addEventListener('updated', function(){
+        thisProduct.processOrder();
+      });
     }
   }
 
@@ -207,6 +209,7 @@
       thisWidget.getElements(element);
       thisWidget.setValue(thisWidget.input.value);
       thisWidget.initActions();
+      thisWidget.announce();
 
       console.log('AmountWidget: ', thisWidget);
       console.log('constructor arguments: ', element);
