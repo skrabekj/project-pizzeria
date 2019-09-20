@@ -317,7 +317,9 @@
       thisCart.products = [];
       thisCart.getElements(element);
       thisCart.initActions();
-      console.log('new Cart', thisCart);
+      //sums it up
+      thisCart.deliveryFee = settings.cart.deliveryFee;
+      //console.log('new Cart', thisCart);
     }
     getElements(element){
       const thisCart = this;
@@ -325,7 +327,7 @@
       thisCart.dom.wrapper = element;
       thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
       thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList);
-      console.log(thisCart.dom.toggleTrigger);
+      //console.log(thisCart.dom.toggleTrigger);
     }
     initActions(){
       const thisCart = this;
@@ -344,7 +346,22 @@
       cartContainer.appendChild(thisCart.element);
       const generatedDOM = thisCart.element;
       thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
-      console.log('thisCart.products', thisCart.products);
+      //console.log('thisCart.products', thisCart.products);
+      thisCart.update();
+    }
+    //Dokończ
+    update(){
+      const thisCart = this;
+      thisCart.totalNumber = 0;
+      thisCart.subtotalPrice = 0;
+      for(let product of thisCart.products){
+        thisCart.subtotalPrice = thisCart.subtotalPrice + thisCart.element.price;
+        thisCart.totalNumber = thisCart.totalNumbe + thisCart.element.amount;
+      }
+      thisCart.totalPrice = thisCart.subtotalPrice + thisCart.deliveryFee;
+      console.log('T number ', thisCart.totalNumber);
+      console.log('s price ', thisCart.subtotalPrice);
+      console.log('T price ', thisCart.totalPrice);
     }
   }
 
@@ -359,7 +376,7 @@
       thisCartProduct.params = JSON.parse(JSON.stringify(menuProduct.params));
       thisCartProduct.getElements(element);
       thisCartProduct.initAmountWidget();
-      console.log('new CartProduct ', thisCartProduct);
+      //console.log('new CartProduct ', thisCartProduct);
 
     }
 
@@ -378,7 +395,7 @@
       thisCartProduct.dom.amountWidget.addEventListener('updated', function(){
         thisCartProduct.amount = thisCartProduct.amountWidget.value;
         thisCartProduct.price = thisCartProduct.priceSingle * thisCartProduct.amount;
-        console.log(thisCartProduct.price);
+        //console.log(thisCartProduct.price);
         thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
       });
     }
