@@ -331,7 +331,7 @@
       const thisCart = this;
       thisCart.dom.toggleTrigger.addEventListener('click', function(){
         event.preventDefault();
-        thisCart.dom.wrapper.classList.add('active');
+        thisCart.dom.wrapper.classList.toggle('active');
       });
     }
     add(menuProduct){
