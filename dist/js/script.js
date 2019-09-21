@@ -307,7 +307,9 @@
     announce(){
       const thisWidget = this;
 
-      const event = new Event('updated');
+      const event = new CustomEvent('updated', {
+        bubles: true
+      });
       thisWidget.element.dispatchEvent(event);
     }
   }
@@ -340,6 +342,9 @@
         event.preventDefault();
         thisCart.dom.wrapper.classList.toggle('active');
       });
+      thisCart.dom.productList.addEventListener('updated', function(){
+        thisCart.update();
+      });
     }
     add(menuProduct){
       const thisCart = this;
@@ -363,11 +368,18 @@
         thisCart.subtotalPrice = thisCart.subtotalPrice + product.price;
         thisCart.totalNumber = thisCart.totalNumber + parseInt(product.amount);
       }
+      //const deliveryFee = settings.cart.defaultDeliveryFee;
       thisCart.totalPrice = thisCart.subtotalPrice + settings.cart.defaultDeliveryFee;
       console.log('T number ', thisCart.totalNumber);
       console.log('s price ', thisCart.subtotalPrice);
       console.log('T price ', thisCart.totalPrice);
       //console.log('D price ', settings.cart.defaultDeliveryFee);
+      //WTF
+      for(let key of thisCart.renderTotalsKeys){
+        for(let elem of thisCart.dom[key]){
+          elem.innerHTML = thisCart[key];
+        }
+      }
     }
   }
 
