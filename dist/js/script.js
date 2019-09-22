@@ -248,12 +248,12 @@
   }
 
   class AmountWidget {
-    constructor(element){
+    constructor(element, value = settings.amountWidget.defaultValue) {
       const thisWidget = this;
       thisWidget.getElements(element);
-      thisWidget.value = settings.amountWidget.defaultValue;
+      thisWidget.value = value;
       thisWidget.initActions();
-      thisWidget.announce();
+      thisWidget.announce()
 
       //console.log('AmountWidget: ', thisWidget);
       //console.log('constructor arguments: ', element);
@@ -423,13 +423,17 @@
     }
     initAmountWidget(){
       const thisCartProduct = this;
-      thisCartProduct.amountWidget = new AmountWidget(thisCartProduct.dom.amountWidget);
+      /*thisCartProduct.amountWidget = new AmountWidget(thisCartProduct.dom.amountWidget);
       thisCartProduct.dom.amountWidget.addEventListener('updated', function(){
         thisCartProduct.amount = thisCartProduct.amountWidget.value;
         thisCartProduct.price = thisCartProduct.priceSingle * thisCartProduct.amount;
         //console.log(thisCartProduct.price);
         thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
-      });
+      });*/
+      thisCartProduct.amountWidget = new AmountWidget(
+        thisCartProduct.dom.amountWidget,
+        thisCartProduct.amount
+      );
     }
     remove(){
       const thisCartProduct = this;
