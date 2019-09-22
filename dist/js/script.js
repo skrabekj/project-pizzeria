@@ -308,7 +308,7 @@
       const thisWidget = this;
 
       const event = new CustomEvent('updated', {
-        bubles: true
+        bubbles: true
       });
       thisWidget.element.dispatchEvent(event);
     }
@@ -362,24 +362,27 @@
       //console.log('thisCart.products', thisCart.products);
       thisCart.update();
     }
-
-    update(){
+    update() {
       const thisCart = this;
       thisCart.totalNumber = 0;
       thisCart.subtotalPrice = 0;
-      for(let product of thisCart.products){
+      thisCart.deliveryFee = 0;
+      if (thisCart.products.length > 0) {
+        thisCart.deliveryFee = settings.cart.defaultDeliveryFee;
+      }
+      for (let product of thisCart.products) {
         thisCart.subtotalPrice = thisCart.subtotalPrice + product.price;
         thisCart.totalNumber = thisCart.totalNumber + parseInt(product.amount);
       }
       //const deliveryFee = settings.cart.defaultDeliveryFee;
-      thisCart.totalPrice = thisCart.subtotalPrice + settings.cart.defaultDeliveryFee;
+      thisCart.totalPrice = thisCart.subtotalPrice + thisCart.deliveryFee;
       console.log('T number ', thisCart.totalNumber);
       console.log('s price ', thisCart.subtotalPrice);
       console.log('T price ', thisCart.totalPrice);
       //console.log('D price ', settings.cart.defaultDeliveryFee);
       //WTF
-      for(let key of thisCart.renderTotalsKeys){
-        for(let elem of thisCart.dom[key]){
+      for (let key of thisCart.renderTotalsKeys) {
+        for (let elem of thisCart.dom[key]) {
           elem.innerHTML = thisCart[key];
         }
       }
