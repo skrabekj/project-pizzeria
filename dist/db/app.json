@@ -202,5 +202,80 @@
       }
     }
   ],
-  "order": []
+  "order": [
+    {
+      "address": "test",
+      "totalPrice": 38,
+      "id": 1
+    },
+    {
+      "address": {},
+      "phone": {},
+      "totalPrice": 38,
+      "subtotalPrice": 18,
+      "totalNumber": 2,
+      "deliveryFee": 20,
+      "products": [
+        {}
+      ],
+      "id": 2
+    },
+    {
+      "address": {},
+      "phone": {},
+      "totalPrice": 40,
+      "subtotalPrice": 20,
+      "totalNumber": 2,
+      "deliveryFee": 20,
+      "products": [
+        {
+          "ingredients": {
+            "label": "Ingredients",
+            "options": {
+              "cucumber": "Cucumber",
+              "tomatoes": "Tomatoes",
+              "olives": "Olives",
+              "feta": "Feta cheese",
+              "herbs": "Fresh herbs"
+            }
+          }
+        }
+      ],
+      "id": 3
+    },
+    {
+      "totalPrice": 66,
+      "subtotalPrice": 46,
+      "totalNumber": 2,
+      "deliveryFee": 20,
+      "products": [
+        {
+          "sauce": {
+            "label": "Sauce",
+            "options": {
+              "tomato": "Tomato"
+            }
+          },
+          "toppings": {
+            "label": "Toppings",
+            "options": {
+              "olives": "Olives",
+              "redPeppers": "Red peppers",
+              "greenPeppers": "Green peppers",
+              "mushrooms": "Mushrooms",
+              "basil": "Fresh basil",
+              "salami": "Salami"
+            }
+          },
+          "crust": {
+            "label": "pizza crust",
+            "options": {
+              "standard": "standard"
+            }
+          }
+        }
+      ],
+      "id": 4
+    }
+  ]
 }
