@@ -495,8 +495,9 @@
         })
         .then(function(parsedResponse){
           console.log('parsedResponse', parsedResponse);
-          //save parsedResponse as thsApp.data.productJson
-          thisApp.data.productJson = parsedResponse;
+          //save parsedResponse as thisApp.data.product
+          thisApp.data.products = parsedResponse;
+          console.log('tA.d.p ', thisApp.data.products);
           //execute initMenu method
           thisApp.initMenu();
         });
