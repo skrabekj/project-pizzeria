@@ -71,7 +71,7 @@ const app = {
         const pId = pageHref.replace('#', '');
         console.log('pId ',pId);
         //TODO activate page
-        thisApp.activatePage();
+        thisApp.activatePage(pId);
       });
     }
   },
