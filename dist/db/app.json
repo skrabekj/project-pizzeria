@@ -202,18 +202,5 @@
       }
     }
   ],
-  "order": [
-    {
-      "address": "",
-      "phone": "",
-      "products": [],
-      "id": 1
-    },
-    {
-      "address": "",
-      "phone": "",
-      "products": [],
-      "id": 2
-    }
-  ]
+  "order": []
 }
