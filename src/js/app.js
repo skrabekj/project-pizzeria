@@ -2,7 +2,7 @@ import {Product} from './components/Product.js';
 //import {AmountWidget} from './components/AmountWidget}.js';
 import {Cart} from './components/Cart.js';
 //import {CartProduct} from './components/CartProduct.js';
-import {select, settings} from './settings.js';
+import {select, settings, classNames} from './settings.js';
 //import {utils} from '../utils.js';
 
 const app = {
@@ -22,7 +22,7 @@ const app = {
     //console.log('classNames:', classNames);
     //console.log('settings:', settings);
     //console.log('templates:', templates);
-
+    thisApp.initPages();
     thisApp.initData();
     //thisApp.initMenu();
   },
@@ -35,14 +35,14 @@ const app = {
         return rawResponse.json();
       })
       .then(function(parsedResponse){
-        console.log('parsedResponse', parsedResponse);
+        //console.log('parsedResponse', parsedResponse);
         //save parsedResponse as thisApp.data.product
         thisApp.data.products = parsedResponse;
-        console.log('tA.d.p ', thisApp.data.products);
+        //console.log('tA.d.p ', thisApp.data.products);
         //execute initMenu method
         thisApp.initMenu();
       });
-    console.log('thisApp.data ', JSON.stringify(thisApp.data));
+  //  console.log('thisApp.data ', JSON.stringify(thisApp.data));
   },
   initCart: function(){
     const thisApp = this;
@@ -54,6 +54,39 @@ const app = {
       app.cart.add(event.detail.product);
     });
   },
+  initPages: function(){
+    const thisApp = this;
+    thisApp.pages = Array.from(document.querySelector(select.containerOf.pages).children);
+
+    thisApp.navLinks = Array.from(document.querySelectorAll(select.nav.links));
+    thisApp.activatePage(thisApp.pages[0].id);
+
+    for(let link of thisApp.navLinks){
+      link.addEventListener('click', function(event){
+        const clickedElement = this;
+        event.preventDefault();
+        //TODO get page id from href
+        const pageHref = clickedElement.getAttribute('href');
+        //console.log('href ',pageHref);
+        const pId = pageHref.replace('#', '');
+        console.log('pId ',pId);
+        //TODO activate page
+        thisApp.activatePage();
+      });
+    }
+  },
+  activatePage: function(pageId){
+    const thisApp = this;
+    for(let link of thisApp.navLinks){
+      link.classList.toggle(classNames.nav.active, link.getAttribute('href') == '#' + pageId);
+      console.log('click', link);
+    }
+    for(let page of thisApp.pages){
+      page.classList.toggle(classNames.pages.active, page.getAttribute('id') ==  pageId);
+      console.log('clack', page);
+    }
+  },
+
 };
 app.init();
 app.initCart();
