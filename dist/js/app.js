@@ -59,7 +59,14 @@ const app = {
     thisApp.pages = Array.from(document.querySelector(select.containerOf.pages).children);
 
     thisApp.navLinks = Array.from(document.querySelectorAll(select.nav.links));
-    thisApp.activatePage(thisApp.pages[0].id);
+    //thisApp.activatePage(thisApp.pages[0].id);
+    let pagesMatchingHash = [];
+    if(window.location.hash.lenght > 2){
+      const idFromHash = window.location.hash.replace('#/','');
+      pagesMatchingHash = thisApp.pages.filter(function(page){
+        return page.id == idFromHash;
+      });
+    }
 
     for(let link of thisApp.navLinks){
       link.addEventListener('click', function(event){
@@ -79,12 +86,14 @@ const app = {
     const thisApp = this;
     for(let link of thisApp.navLinks){
       link.classList.toggle(classNames.nav.active, link.getAttribute('href') == '#' + pageId);
-      console.log('click', link);
+      //console.log('click', link);
     }
     for(let page of thisApp.pages){
       page.classList.toggle(classNames.pages.active, page.getAttribute('id') ==  pageId);
-      console.log('clack', page);
+      // to id to jest id z pętli wyżej pId
+      //console.log('clack', page);
     }
+    window.location.hash = '#/' + pageId;
   },
 
 };
