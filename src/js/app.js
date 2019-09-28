@@ -4,6 +4,7 @@ import {Cart} from './components/Cart.js';
 //import {CartProduct} from './components/CartProduct.js';
 import {select, settings, classNames} from './settings.js';
 //import {utils} from '../utils.js';
+import {Booking} from './components/Booking.js';
 
 const app = {
   initMenu: function(){
@@ -25,6 +26,8 @@ const app = {
     thisApp.initPages();
     thisApp.initData();
     //thisApp.initMenu();
+    thisApp.initBooking();
+
   },
   initData: function(){
     const thisApp = this;
@@ -61,11 +64,12 @@ const app = {
     thisApp.navLinks = Array.from(document.querySelectorAll(select.nav.links));
     //thisApp.activatePage(thisApp.pages[0].id);
     let pagesMatchingHash = [];
-    if(window.location.hash.lenght > 2){
+    if(window.location.hash.length > 2){
       const idFromHash = window.location.hash.replace('#/','');
       pagesMatchingHash = thisApp.pages.filter(function(page){
         return page.id == idFromHash;
       });
+      thisApp.activatePage(pagesMatchingHash.length ? pagesMatchingHash[0].id : thisApp.pages[0].id);
     }
 
     for(let link of thisApp.navLinks){
@@ -95,7 +99,11 @@ const app = {
     }
     window.location.hash = '#/' + pageId;
   },
-
+  initBooking: function(){
+    const thisApp = this;
+    const bookingWidget = document.querySelector(select.containerOf.booking);
+    thisApp.booking = new Booking(bookingWidget);
+  }
 };
 app.init();
 app.initCart();
