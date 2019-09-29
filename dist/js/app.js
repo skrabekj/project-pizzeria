@@ -63,6 +63,7 @@ const app = {
 
     thisApp.navLinks = Array.from(document.querySelectorAll(select.nav.links));
     //thisApp.activatePage(thisApp.pages[0].id);
+
     let pagesMatchingHash = [];
     if(window.location.hash.length > 2){
       const idFromHash = window.location.hash.replace('#/','');

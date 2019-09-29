@@ -57,12 +57,12 @@ export class AmountWidget {
       const inputValue = parseInt(thisWidget.input.value);
       thisWidget.value = inputValue + 1; });
   }
-  announce(){
+  /*announce(){
     const thisWidget = this;
 
     const event = new CustomEvent('updated', {
       bubbles: true
     });
     thisWidget.element.dispatchEvent(event);
-  }
+  }*/
 }
