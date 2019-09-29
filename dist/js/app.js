@@ -81,7 +81,7 @@ const app = {
         const pageHref = clickedElement.getAttribute('href');
         //console.log('href ',pageHref);
         const pId = pageHref.replace('#', '');
-        console.log('pId ',pId);
+        //console.log('pId ',pId);
         //TODO activate page
         thisApp.activatePage(pId);
       });
