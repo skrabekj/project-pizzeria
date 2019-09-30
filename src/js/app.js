@@ -1,9 +1,6 @@
 import {Product} from './components/Product.js';
-//import {AmountWidget} from './components/AmountWidget}.js';
 import {Cart} from './components/Cart.js';
-//import {CartProduct} from './components/CartProduct.js';
 import {select, settings, classNames} from './settings.js';
-//import {utils} from '../utils.js';
 import {Booking} from './components/Booking.js';
 
 const app = {
@@ -12,7 +9,6 @@ const app = {
 
     //console.log('thisApp.data: ', thisApp.data);
     for(let productData in thisApp.data.products){
-      //new Product(productData, thisApp.data.products[productData]);
       new Product(thisApp.data.products[productData].id, thisApp.data.products[productData]);
     }
   },
@@ -25,7 +21,6 @@ const app = {
     //console.log('templates:', templates);
     thisApp.initPages();
     thisApp.initData();
-    //thisApp.initMenu();
     thisApp.initBooking();
 
   },
@@ -38,11 +33,7 @@ const app = {
         return rawResponse.json();
       })
       .then(function(parsedResponse){
-        //console.log('parsedResponse', parsedResponse);
-        //save parsedResponse as thisApp.data.product
         thisApp.data.products = parsedResponse;
-        //console.log('tA.d.p ', thisApp.data.products);
-        //execute initMenu method
         thisApp.initMenu();
       });
   //  console.log('thisApp.data ', JSON.stringify(thisApp.data));
@@ -62,7 +53,6 @@ const app = {
     thisApp.pages = Array.from(document.querySelector(select.containerOf.pages).children);
 
     thisApp.navLinks = Array.from(document.querySelectorAll(select.nav.links));
-    //thisApp.activatePage(thisApp.pages[0].id);
 
     let pagesMatchingHash = [];
     if(window.location.hash.length > 2){
@@ -77,12 +67,12 @@ const app = {
       link.addEventListener('click', function(event){
         const clickedElement = this;
         event.preventDefault();
-        //TODO get page id from href
+        //get page id from href
         const pageHref = clickedElement.getAttribute('href');
         //console.log('href ',pageHref);
         const pId = pageHref.replace('#', '');
         //console.log('pId ',pId);
-        //TODO activate page
+        //activate page
         thisApp.activatePage(pId);
       });
     }

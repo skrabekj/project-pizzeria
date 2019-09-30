@@ -8,7 +8,6 @@ export class AmountWidget extends BaseWidget {
     thisWidget.getElements(/*element*/);
     thisWidget.value = value;
     thisWidget.initActions();
-    //thisWidget.announce();
 
     //console.log('AmountWidget: ', thisWidget);
     //console.log('constructor arguments: ', element);
@@ -23,34 +22,8 @@ export class AmountWidget extends BaseWidget {
     thisWidget.dom.linkIncrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkIncrease);
   }
 
-  /*setValue(value){
-    const thisWidget = this;
-    const newValue = parseInt(value);
-    //console.log('cval ', thisWidget.value);
-    //console.log('mval ', settings.amountWidget.defaultMin);
-    /* Add validation*/
-  /*if(newValue != thisWidget.value && newValue >= settings.amountWidget.defaultMin && newValue <= settings.amountWidget.defaultMax){
-      thisWidget.value = newValue;
-      //console.log('nval ', thisWidget.value);
-      thisWidget.announce();
-    }
-    thisWidget.input.value = thisWidget.value;
-  }*/
-
-  /*set value(value){
-    const thisWidget = this;
-    const newValue = parseInt(value);
-
-    if(newValue != thisWidget.value && newValue >= settings.amountWidget.defaultMin && newValue <= settings.amountWidget.defaultMax){
-      thisWidget.input.value = value;
-      thisWidget.announce();
-    }
-  }*/
   isValid(newValue){
     return !isNaN(newValue) && newValue >= settings.amountWidget.defaultMin && newValue <= settings.amountWidget.defaultMax;
-  }
-  get value(){
-    return this.input.value;
   }
 
   initActions(){
@@ -66,12 +39,5 @@ export class AmountWidget extends BaseWidget {
     const thisWidget = this;
     thisWidget.dom.input.value = thisWidget.value;
   }
-  /*announce(){
-    const thisWidget = this;
 
-    const event = new CustomEvent('updated', {
-      bubbles: true
-    });
-    thisWidget.element.dispatchEvent(event);
-  }*/
 }
