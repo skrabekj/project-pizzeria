@@ -5,7 +5,7 @@ export class AmountWidget extends BaseWidget {
   constructor(wrapper, value = settings.amountWidget.defaultValue) {
     super(wrapper, settings.amountWidget.defaultValue);
     const thisWidget = this;
-    thisWidget.getElements(/*element*/);
+    thisWidget.getElements();
     thisWidget.value = value;
     thisWidget.initActions();
 
@@ -13,10 +13,9 @@ export class AmountWidget extends BaseWidget {
     //console.log('constructor arguments: ', element);
   }
 
-  getElements(/*element*/){
+  getElements(){
     const thisWidget = this;
 
-    //thisWidget.element = element;
     thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(select.widgets.amount.input);
     thisWidget.dom.linkDecrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkDecrease);
     thisWidget.dom.linkIncrease = thisWidget.dom.wrapper.querySelector(select.widgets.amount.linkIncrease);
