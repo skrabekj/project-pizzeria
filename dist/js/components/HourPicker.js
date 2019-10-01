@@ -3,12 +3,12 @@ import {BaseWidget} from './BaseWidget.js';
 import {utils} from '../utils.js';
 import {select, settings} from '../settings.js';
 
-export class DatePicker extends BaseWidget {
+export class HourPicker extends BaseWidget {
   constructor(wrapper) {
     super(wrapper, settings.hours.open);
     const thisWidget = this;
-    thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(select.widgets.datePicker.input);
-    thisWidget.dom.output  = thisWidget.dom.wrapper.querySelector(select.widgets.datePicker.output);
+    thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(select.widgets.hourPicker.input);
+    thisWidget.dom.output  = thisWidget.dom.wrapper.querySelector(select.widgets.hourPicker.output);
     thisWidget.initPlugin();
     thisWidget.value = thisWidget.dom.input.value;
   }
@@ -23,13 +23,12 @@ export class DatePicker extends BaseWidget {
     return utils.numberToHour(value);
   }
   isValid(){
-    event.preventDefault();
     return true;
   }
   renderValue(){
     const thisWidget = this;
     //thisWidget.value = thisWidget.dom.input.value;
-    thisWidget.dom.output = thisWidget.value;
+    thisWidget.dom.output.innerHTML = thisWidget.value;
 
   }
 }
