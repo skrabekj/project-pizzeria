@@ -30,6 +30,7 @@ export class DatePicker extends BaseWidget {
         thisWidget.value = dateStr;
       }
     });
+    //thisWidget.flatpickr();
   }
   parseValue(value){
     return value;

@@ -19,8 +19,8 @@ export class DatePicker extends BaseWidget {
       thisWidget.value = thisWidget.dom.input.value;
     });
   }
-  parseValue(newValue){
-    return utils.numberToHour(newValue);
+  parseValue(value){
+    return utils.numberToHour(value);
   }
   isValid(){
     event.preventDefault();
