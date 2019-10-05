@@ -41,6 +41,7 @@ export class Booking {
     thisBooking.dom.wrapper.addEventListener('updated', function(){
       thisBooking.updateDOM();
     });
+
   }
   getData(){
     const thisBooking = this;
@@ -85,9 +86,9 @@ export class Booking {
         thisBooking.tableSelector();
         thisBooking.starterSlector();
       });
-    thisBooking.dom.formSubmitButton.addEventListener('submit', function(table){
+    thisBooking.dom.formSubmitButton.addEventListener('click', function(){
       event.preventDefault();
-      thisBooking.eventSender(table);
+      thisBooking.eventSender();
     });
 
   }
@@ -165,8 +166,9 @@ export class Booking {
           table.classList.remove('active');
         }
         if(table.classList.contains('active')) {
-          table.data = table.getAttribute('data-table');
-          console.log('table-data',table.data);
+          thisBooking.selectedTable = table.getAttribute('data-table');
+          /*table.data = table.getAttribute('data-table');
+          console.log('table-data',table.data);*/
         }
       });
     }
@@ -178,6 +180,7 @@ export class Booking {
       starter.addEventListener('change', function() {
         if(starter.checked){
           thisBooking.selectetStarters.push(starter.value);
+          console.log(starter.value);
         } else {
           thisBooking.selectetStarters.splice(thisBooking.starters.indexOf(starter.value, 1));
         }
@@ -186,19 +189,23 @@ export class Booking {
     }
 
   }
-  eventSender(table){
+  eventSender(){
+
     const thisBooking = this;
     const url = settings.db.url + '/' + settings.db.booking;
+    const hAmount = thisBooking.dom.hoursAmount.querySelector('input').value;
+    const pAmount = thisBooking.dom.peopleAmount.querySelector('input').value;
 
     const payload =  {
       date: thisBooking.date,
       hour: thisBooking.hour,
-      table: table.data,
+      table:   thisBooking.selectedTable,
       repeat: false,
-      duration: thisBooking.dom.hoursAmount.value,
-      ppl: thisBooking.dom.peopleAmount,
+      duration: hAmount,
+      ppl: pAmount,
       starters: thisBooking.selectetStarters,
     };
+
     console.log(payload);
     const options = {
       method: 'POST',
@@ -208,13 +215,12 @@ export class Booking {
       body: JSON.stringify(payload),
     };
 
-    fetch(url, options)
+    /*fetch(url, options)
       .then(function(response){
         return response.json();
       })
       .then(function(parsedResponse){
         console.log('parsedResponse', parsedResponse);
-      });
+      });*/
   }
-
 }

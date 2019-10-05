@@ -207,7 +207,7 @@
     {
       "id": 1,
       "date": "2019-10-03",
-      "hour": "12:30",
+      "hour": "12.5",
       "table": 1,
       "repeat": false,
       "duration": 4,
@@ -217,33 +217,27 @@
     {
       "id": 2,
       "date": "2019-01-01",
-      "hour": "16:00",
+      "hour": "16.0",
       "table": 3,
       "repeat": "daily",
       "duration": 2,
       "ppl": 3,
-      "starters": [
-        "bread",
-        "lemonWater"
-      ]
+      "starters": ["bread", "lemonWater"]
     },
     {
       "id": 3,
       "date": "2019-01-01",
-      "hour": "12:00",
+      "hour": "12.0",
       "table": 3,
       "repeat": "daily",
       "duration": 2,
       "ppl": 3,
-      "starters": [
-        "bread",
-        "lemonWater"
-      ]
+      "starters": ["bread", "lemonWater"]
     },
     {
       "id": 4,
       "date": "2019-01-01",
-      "hour": "13:00",
+      "hour": "13.0",
       "table": 2,
       "repeat": "daily",
       "duration": 4,
@@ -253,24 +247,13 @@
     {
       "id": 5,
       "date": "2019-01-01",
-      "hour": "18:00",
+      "hour": "18.0",
       "table": 2,
       "repeat": "daily",
       "duration": 2,
       "ppl": 3,
-      "starters": [
-        "lemonWater"
-      ]
+      "starters": ["lemonWater"]
     }
   ],
-  "booking": [
-    {
-      "date": "2019-10-05",
-      "hour": 13.5,
-      "repeat": false,
-      "ppl": {},
-      "starters": [],
-      "id": 1
-    }
-  ]
+  "booking": []
 }
