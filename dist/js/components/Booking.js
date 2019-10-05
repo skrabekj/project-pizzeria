@@ -10,7 +10,7 @@ export class Booking {
     thisBooking.render(bookingWidget);
     thisBooking.initWidgets();
     thisBooking.getData();
-
+    //thisBooking.tableSelector();
   }
   render(bookingWidget){
     const thisBooking = this;
@@ -29,6 +29,8 @@ export class Booking {
     //console.log(thisBooking.dom.hoursAmount);
     thisBooking.dom.datePicker = thisBooking.dom.wrapper.querySelector(select.widgets.datePicker.wrapper);
     thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
+    thisBooking.dom.starters = thisBooking.dom.wrapper.querySelectorAll(select.booking.starters);
+    thisBooking.dom.formSubmitButton = thisBooking.dom.wrapper.querySelector(select.booking.formSubmit);
   }
   initWidgets(){
     const thisBooking = this;
@@ -80,7 +82,14 @@ export class Booking {
       })
       .then(function([bookings, eventsCurrent, eventsRepeat]){
         thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
+        thisBooking.tableSelector();
+        thisBooking.starterSlector();
       });
+    thisBooking.dom.formSubmitButton.addEventListener('submit', function(table){
+      event.preventDefault();
+      thisBooking.eventSender(table);
+    });
+
   }
   parseData(bookings, eventsCurrent, eventsRepeat) {
     const thisBooking = this;
@@ -108,7 +117,7 @@ export class Booking {
 
   makeBooked(date, hour, duration, table) {
     const thisBooking = this;
-    console.log(date, hour, duration, table);
+    //console.log(date, hour, duration, table);
     if (typeof thisBooking.booked[date] == 'undefined') {
       thisBooking.booked[date] = {};
     }
@@ -120,10 +129,10 @@ export class Booking {
       }
       thisBooking.booked[date][hourBlock].push(table);
     }
-    console.log(thisBooking.booked);
+    //console.log(thisBooking.booked);
   }
   updateDOM(){
-    console.log('uDom');
+    //console.log('uDom');
     const thisBooking = this;
     thisBooking.date = thisBooking.datePicker.value;
     thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
@@ -140,4 +149,72 @@ export class Booking {
       }
     }
   }
+  tableSelector(){
+    const thisBooking = this;
+    thisBooking.date = thisBooking.datePicker.value;
+    thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
+
+    for(let table of thisBooking.dom.tables){
+      table.addEventListener('click', function() {
+        if (!table.classList.contains(classNames.booking.tableBooked)){
+          table.classList.toggle('active');
+          thisBooking.newDate = thisBooking.date;
+          thisBooking.newHour = thisBooking.hour;
+        }
+        if(thisBooking.newDate != thisBooking.date || thisBooking.newHour != thisBooking.hour){
+          table.classList.remove('active');
+        }
+        if(table.classList.contains('active')) {
+          table.data = table.getAttribute('data-table');
+          console.log('table-data',table.data);
+        }
+      });
+    }
+  }
+  starterSlector(){
+    const thisBooking = this;
+    thisBooking.selectetStarters = [];
+    for (let starter of thisBooking.dom.starters) {
+      starter.addEventListener('change', function() {
+        if(starter.checked){
+          thisBooking.selectetStarters.push(starter.value);
+        } else {
+          thisBooking.selectetStarters.splice(thisBooking.starters.indexOf(starter.value, 1));
+        }
+      });
+      console.log(thisBooking.selectetStarters);
+    }
+
+  }
+  eventSender(table){
+    const thisBooking = this;
+    const url = settings.db.url + '/' + settings.db.booking;
+
+    const payload =  {
+      date: thisBooking.date,
+      hour: thisBooking.hour,
+      table: table.data,
+      repeat: false,
+      duration: thisBooking.dom.hoursAmount.value,
+      ppl: thisBooking.dom.peopleAmount,
+      starters: thisBooking.selectetStarters,
+    };
+    console.log(payload);
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    };
+
+    fetch(url, options)
+      .then(function(response){
+        return response.json();
+      })
+      .then(function(parsedResponse){
+        console.log('parsedResponse', parsedResponse);
+      });
+  }
+
 }
