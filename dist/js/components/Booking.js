@@ -133,8 +133,18 @@ export class Booking {
     //console.log(thisBooking.booked);
   }
   updateDOM(){
-    //console.log('uDom');
     const thisBooking = this;
+    const newDate = thisBooking.datePicker.value;
+    const newHour = utils.hourToNumber(thisBooking.hourPicker.value);
+
+    if (thisBooking.date !== newDate || thisBooking.hour !== newHour) {
+      for (let table of thisBooking.dom.tables) {
+        table.classList.remove('active');
+      }
+    }
+    thisBooking.date = newDate;
+    thisBooking.hour = newHour;
+    //console.log('uDom');
     thisBooking.date = thisBooking.datePicker.value;
     //console.log(thisBooking.datePicker.value);
     thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
@@ -164,10 +174,6 @@ export class Booking {
           thisBooking.newDate = thisBooking.date;
           thisBooking.newHour = thisBooking.hour;
         }
-        if(thisBooking.newDate != thisBooking.date || thisBooking.newHour != thisBooking.hour){
-          table.classList.remove('active');
-        }
-        console.log(thisBooking.newHour, thisBooking.hour);
         if(table.classList.contains('active')) {
           thisBooking.selectedTable = table.getAttribute('data-table');
         }
@@ -175,6 +181,7 @@ export class Booking {
     }
     //console.log('TS', thisBooking.hour);
   }
+
 
   starterSlector(){
     const thisBooking = this;
@@ -192,13 +199,16 @@ export class Booking {
 
   }
   eventSender(){
-
     const thisBooking = this;
     const url = settings.db.url + '/' + settings.db.booking;
     const hAmount = thisBooking.dom.hoursAmount.querySelector('input').value;
     const pAmount = thisBooking.dom.peopleAmount.querySelector('input').value;
 
-
+    .then (for (let table of thisBooking.dom.tables) {
+      if(table.classList.contains('active')){
+        table.classList.add(classNames.booking.tableBooked);
+      }
+    }};
 
     const payload =  {
       date: thisBooking.date,
@@ -226,6 +236,9 @@ export class Booking {
       })
       .then(function(parsedResponse){
         console.log('parsedResponse', parsedResponse);
+      })
+      .then(function() {
+        thisBooking.getData();
       });
   }
 }
