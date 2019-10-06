@@ -204,12 +204,6 @@ export class Booking {
     const hAmount = thisBooking.dom.hoursAmount.querySelector('input').value;
     const pAmount = thisBooking.dom.peopleAmount.querySelector('input').value;
 
-    .then (for (let table of thisBooking.dom.tables) {
-      if(table.classList.contains('active')){
-        table.classList.add(classNames.booking.tableBooked);
-      }
-    }};
-
     const payload =  {
       date: thisBooking.date,
       hour: utils.numberToHour(thisBooking.hour),
@@ -231,14 +225,18 @@ export class Booking {
     };
 
     fetch(url, options)
-      .then(function(response){
+      .then(function(response) {
         return response.json();
       })
-      .then(function(parsedResponse){
+      .then(function(parsedResponse) {
         console.log('parsedResponse', parsedResponse);
       })
       .then(function() {
-        thisBooking.getData();
+        for (let table of thisBooking.dom.tables) {
+          if (table.classList.contains('active')) {
+            table.classList.add(classNames.booking.tableBooked);
+          }
+        }
       });
   }
 }
