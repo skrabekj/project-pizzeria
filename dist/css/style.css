@@ -37,7 +37,7 @@
   text-transform: uppercase;
 }
 
-.h2, .main-nav a, .product__params-title, .booking-option-title, .floor-plan .table {
+.h2, .product__params-title, .booking-option-title, .floor-plan .table {
   font-size: 14px;
   font-weight: 700;
   text-transform: uppercase;
@@ -64,7 +64,7 @@ body {
 }
 
 .container {
-  max-width: 700px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -285,34 +285,29 @@ input.error, select.error {
   font-style: italic;
 }
 
-.main-nav {
-  position: absolute;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: row;
-      flex-direction: row;
-  -ms-flex-align: start;
-      align-items: flex-start;
-  -ms-flex-pack: start;
-      justify-content: flex-start;
-  bottom: -96px;
-}
+/*.main-nav {
+  //position: absolute;
+  @include flex(row, flex-start, flex-start);
+  bottom: ($base-size * -8);
 
-.main-nav a {
-  color: #ff6b6b;
-  text-decoration: none;
-  margin-right: 24px;
-  text-align: center;
-  padding: 12px 24px;
-  background: #262626;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-}
+  a {
+    @extend .h2;
+    color: $color-main;
+    text-decoration: none;
+    margin-right: ($base-size * 2);
+    text-align: center;
+    padding: $base-size ($base-size * 2);
+    background: darken($color-dark, 5%);
+    border-top-left-radius: $radius;
+    border-top-right-radius: $radius;
 
-.main-nav a.active {
-  background: #f2f2f2;
-}
+    &.active {
+      background: lighten($color-dark, 75%);
+    }
 
+  }
+
+}*/
 .cart {
   position: absolute;
   width: 300px;
@@ -836,5 +831,110 @@ input.error, select.error {
   -ms-flex-pack: justify;
       justify-content: space-between;
   margin: 48px auto;
+}
+
+.order-page:active .homepage {
+  display: none;
+}
+
+.booking-page:active .homepage {
+  display: none;
+}
+
+.pic-1 {
+  background-image: url("../../images/homepage/pizza-1.jpg");
+  -o-object-fit: cover;
+     object-fit: cover;
+  text-align: center;
+  color: white;
+  min-height: 150px;
+  border-radius: 5px;
+}
+
+.pic-2 {
+  background-image: url("../../images/homepage/pizza-2.jpg");
+  -o-object-fit: cover;
+     object-fit: cover;
+  text-align: center;
+  color: white;
+  min-height: 150px;
+  border-radius: 5px;
+}
+
+.main-nav a {
+  text-decoration: none;
+}
+
+.nav-1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: 1s all;
+}
+
+.nav-pic:hover .nav-1 {
+  top: 30%;
+}
+
+.nav-2 {
+  position: absolute;
+  top: 105%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.nav-pic:hover .nav-2 {
+  top: 60%;
+  transition: 2s;
+}
+
+.opening-inside {
+  background-color: #ff6b6b;
+  color: white;
+  text-align: center;
+  min-height: 160px;
+  border-radius: 5px;
+}
+
+.carousel-item img {
+  width: 40%;
+  position: relative;
+}
+
+.carousel-caption {
+  position: absolute;
+  color: black;
+  width: 50%;
+  left: 45%;
+  top: 10px;
+  text-align: justify;
+}
+
+.gallery-pic {
+  width: 130%;
+  height: 216px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  z-index: 2;
+}
+
+.pcenter {
+  margin-left: 90px;
+  margin-right: 90px;
+}
+
+.link-icons {
+  position: absolute;
+  display: none;
+  top: 50%;
+  left: 65%;
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+  color: #fff;
+}
+
+.gallery-pic:hover .link-icons {
+  display: block;
 }
 /*# sourceMappingURL=style.css.map */
