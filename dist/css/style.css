@@ -833,14 +833,13 @@ input.error, select.error {
   margin: 48px auto;
 }
 
-.order-page:active .homepage {
-  display: none;
-}
-
-.booking-page:active .homepage {
-  display: none;
-}
-
+/*.order-page.active .product-list{
+  position: absolute;
+  top: 138%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background-color: white;
+}*/
 .pic-1 {
   background-image: url("../../images/homepage/pizza-1.jpg");
   -o-object-fit: cover;
@@ -916,7 +915,6 @@ input.error, select.error {
   height: 216px;
   -o-object-fit: cover;
      object-fit: cover;
-  z-index: 2;
 }
 
 .pcenter {
@@ -934,7 +932,19 @@ input.error, select.error {
   color: #fff;
 }
 
-.gallery-pic:hover .link-icons {
+.pic-box:hover .link-icons {
   display: block;
+}
+
+.link-icons .fas:hover {
+  color: #ff6b6b;
+}
+
+footer a {
+  color: #ff6b6b;
+}
+
+.main-nav a:active .home-div {
+  display: none;
 }
 /*# sourceMappingURL=style.css.map */

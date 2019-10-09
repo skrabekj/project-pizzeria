@@ -1,9 +1,11 @@
-.order-page:active .homepage {
-  display: none;
-}
-.booking-page:active .homepage {
-  display: none;
-}
+/*.order-page.active .product-list{
+  position: absolute;
+  top: 138%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background-color: white;
+}*/
+
 .pic-1{
   background-image: url('../../images/homepage/pizza-1.jpg');
   object-fit: cover;
@@ -66,7 +68,7 @@
   width: 130%;
   height: 216px;
   object-fit: cover;
-  z-index: 2;
+  //z-index: 2;
 }
 .pcenter{
   margin-left: 90px;
@@ -82,7 +84,15 @@
   color: #fff;
   //z-index: 1;
 }
-.gallery-pic:hover .link-icons {
+.pic-box:hover .link-icons {
   display: block;
-
+}
+.link-icons .fas:hover{
+  color: $color-main;
+}
+footer a{
+  color: $color-main;
+}
+.main-nav a:active .home-div {
+  display: none;
 }
