@@ -676,8 +676,8 @@ input.error, select.error {
       flex-direction: row;
   -ms-flex-align: start;
       align-items: flex-start;
-  -ms-flex-pack: justify;
-      justify-content: space-between;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   margin: 0 0 48px 0;
 }
 
@@ -787,6 +787,10 @@ input.error, select.error {
   border-radius: 50%;
 }
 
+.floor-plan .table.active {
+  background-color: #78e08f;
+}
+
 .floor-plan .table.booked {
   cursor: not-allowed;
   color: #999999;
@@ -828,18 +832,15 @@ input.error, select.error {
       flex-direction: row;
   -ms-flex-align: start;
       align-items: flex-start;
-  -ms-flex-pack: justify;
-      justify-content: space-between;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   margin: 48px auto;
 }
 
-/*.order-page.active .product-list{
-  position: absolute;
-  top: 138%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  background-color: white;
-}*/
+.order-confirmation {
+  text-align: center;
+}
+
 .pic-1 {
   background-image: url("../../images/homepage/pizza-1.jpg");
   -o-object-fit: cover;
@@ -944,7 +945,7 @@ footer a {
   color: #ff6b6b;
 }
 
-.main-nav a:active .home-div {
+.home-div.hidden {
   display: none;
 }
 /*# sourceMappingURL=style.css.map */

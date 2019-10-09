@@ -1,10 +1,3 @@
-/*.order-page.active .product-list{
-  position: absolute;
-  top: 138%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  background-color: white;
-}*/
 
 .pic-1{
   background-image: url('../../images/homepage/pizza-1.jpg');
@@ -93,6 +86,6 @@
 footer a{
   color: $color-main;
 }
-.main-nav a:active .home-div {
-  display: none;
-}
+ .home-div.hidden {
+   display:none;
+ }

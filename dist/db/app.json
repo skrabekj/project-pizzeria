@@ -222,7 +222,10 @@
       "repeat": "daily",
       "duration": 2,
       "ppl": 3,
-      "starters": ["bread", "lemonWater"]
+      "starters": [
+        "bread",
+        "lemonWater"
+      ]
     },
     {
       "id": 3,
@@ -232,7 +235,10 @@
       "repeat": "daily",
       "duration": 2,
       "ppl": 3,
-      "starters": ["bread", "lemonWater"]
+      "starters": [
+        "bread",
+        "lemonWater"
+      ]
     },
     {
       "id": 4,
@@ -252,8 +258,76 @@
       "repeat": "daily",
       "duration": 2,
       "ppl": 3,
-      "starters": ["lemonWater"]
+      "starters": [
+        "lemonWater"
+      ]
     }
   ],
-  "booking": []
+  "booking": [
+    {
+      "date": "2019-10-09",
+      "hour": "12:30",
+      "table": [
+        "2",
+        "1",
+        "1",
+        "2"
+      ],
+      "repeat": false,
+      "duration": "1",
+      "ppl": "1",
+      "starters": [],
+      "id": 1
+    },
+    {
+      "date": "2019-10-09",
+      "hour": "12:00",
+      "table": 1,
+      "repeat": false,
+      "duration": "1",
+      "ppl": "1",
+      "starters": [],
+      "id": 2
+    },
+    {
+      "date": "2019-10-09",
+      "hour": "0:00",
+      "table": [
+        1,
+        2
+      ],
+      "repeat": false,
+      "duration": "2",
+      "ppl": "1",
+      "starters": [],
+      "id": 3
+    },
+    {
+      "date": "2019-10-09",
+      "hour": "12:00",
+      "table": [
+        2,
+        2
+      ],
+      "repeat": false,
+      "duration": "2",
+      "ppl": "1",
+      "starters": [],
+      "id": 4
+    },
+    {
+      "date": "2019-10-09",
+      "hour": "12:00",
+      "table": [
+        2,
+        2,
+        2
+      ],
+      "repeat": false,
+      "duration": "2",
+      "ppl": "1",
+      "starters": [],
+      "id": 5
+    }
+  ]
 }

@@ -166,6 +166,7 @@ export class Booking {
     const thisBooking = this;
     thisBooking.date = thisBooking.datePicker.value;
     thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
+    thisBooking.selectedTableArray = [];
 
     for(let table of thisBooking.dom.tables){
       table.addEventListener('click', function() {
@@ -176,10 +177,19 @@ export class Booking {
         }
         if(table.classList.contains('active')) {
           thisBooking.selectedTable = table.getAttribute('data-table');
+          //console.log('TS', thisBooking.selectedTable);
+          thisBooking.selectedTableArray.push(thisBooking.selectedTable);
+          console.log('array', thisBooking.selectedTableArray);
+        }
+        else{
+          thisBooking.selectedTableArray = thisBooking.selectedTableArray.filter(function(item) {
+            return item != table.getAttribute('data-table');
+          });
+          console.log('array', thisBooking.selectedTableArray);
+          //console.log('array', thisBooking.selectedTableArray.value);
         }
       });
     }
-    //console.log('TS', thisBooking.hour);
   }
 
 
@@ -207,7 +217,9 @@ export class Booking {
     const payload =  {
       date: thisBooking.date,
       hour: utils.numberToHour(thisBooking.hour),
-      table:   thisBooking.selectedTable,
+      table: thisBooking.selectedTableArray.map(function(item) {
+        return parseInt(item);
+      }),
       repeat: false,
       duration: hAmount,
       ppl: pAmount,
@@ -235,6 +247,7 @@ export class Booking {
         for (let table of thisBooking.dom.tables) {
           if (table.classList.contains('active')) {
             table.classList.add(classNames.booking.tableBooked);
+            table.classList.remove('active');
           }
         }
       });
