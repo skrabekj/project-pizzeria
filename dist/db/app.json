@@ -266,68 +266,29 @@
   "booking": [
     {
       "date": "2019-10-09",
-      "hour": "12:30",
+      "hour": "12:00",
       "table": [
-        "2",
-        "1",
-        "1",
-        "2"
+        2,
+        1
       ],
       "repeat": false,
-      "duration": "1",
+      "duration": 1,
       "ppl": "1",
       "starters": [],
       "id": 1
     },
     {
       "date": "2019-10-09",
-      "hour": "12:00",
-      "table": 1,
+      "hour": "17:00",
+      "table": [
+        2,
+        1
+      ],
       "repeat": false,
-      "duration": "1",
+      "duration": 1,
       "ppl": "1",
       "starters": [],
       "id": 2
-    },
-    {
-      "date": "2019-10-09",
-      "hour": "0:00",
-      "table": [
-        1,
-        2
-      ],
-      "repeat": false,
-      "duration": "2",
-      "ppl": "1",
-      "starters": [],
-      "id": 3
-    },
-    {
-      "date": "2019-10-09",
-      "hour": "12:00",
-      "table": [
-        2,
-        2
-      ],
-      "repeat": false,
-      "duration": "2",
-      "ppl": "1",
-      "starters": [],
-      "id": 4
-    },
-    {
-      "date": "2019-10-09",
-      "hour": "12:00",
-      "table": [
-        2,
-        2,
-        2
-      ],
-      "repeat": false,
-      "duration": "2",
-      "ppl": "1",
-      "starters": [],
-      "id": 5
     }
   ]
 }

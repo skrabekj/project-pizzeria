@@ -97,6 +97,12 @@ export class Booking {
     thisBooking.booked = {};
     for (let item of bookings) {
       thisBooking.makeBooked(item.date, item.hour, item.duration, item.table);
+      console.log(item.table);
+
+      for (let table of item.table) {
+        thisBooking.makeBooked(item.date, item.hour, item.duration, table);
+
+      }
     }
 
     for (let item of eventsCurrent) {
@@ -221,7 +227,7 @@ export class Booking {
         return parseInt(item);
       }),
       repeat: false,
-      duration: hAmount,
+      duration: parseInt(hAmount),
       ppl: pAmount,
       starters: thisBooking.selectedStarters,
     };
@@ -250,6 +256,7 @@ export class Booking {
             table.classList.remove('active');
           }
         }
+        thisBooking.getData();
       });
   }
 }
