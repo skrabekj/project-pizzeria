@@ -92,6 +92,55 @@ export class Booking {
     });
 
   }
+  updateData(){
+    const thisBooking = this;
+
+    const startEndDates = {};
+    startEndDates[settings.db.dateStartParamKey] = utils.dateToStr(thisBooking.datePicker.minDate);
+    startEndDates[settings.db.dateEndParamKey] = utils.dateToStr(thisBooking.datePicker.maxDate);
+
+    const endDate = {};
+    endDate[settings.db.dateEndParamKey] = startEndDates[settings.db.dateEndParamKey];
+
+    const params = {
+      booking: utils.queryParams(startEndDates),
+      eventsCurrent: settings.db.notRepeatParam + '&' + utils.queryParams(startEndDates),
+      eventsRepeat: settings.db.repeatParam + '&' + utils.queryParams(endDate),
+    };
+
+    console.log('getData params', params);
+
+    const urls = {
+      booking: settings.db.url + '/' + settings.db.booking + '?' + params.booking,
+      eventsCurrent: settings.db.url + '/' + settings.db.event + '?' + params.eventsCurrent,
+      eventsRepeat: settings.db.url + '/' + settings.db.event + '?' + params.eventsRepeat,
+    };
+
+    console.log('getData urls', urls);
+
+    Promise.all([
+      fetch(urls.booking),
+      fetch(urls.eventsCurrent),
+      fetch(urls.eventsRepeat),
+    ])
+      .then(function([bookingsResponse, eventsCurrentResponse, eventsRepeatResponse]){
+        return Promise.all([
+          bookingsResponse.json(),
+          eventsCurrentResponse.json(),
+          eventsRepeatResponse.json(),
+        ]);
+      })
+      .then(function([bookings, eventsCurrent, eventsRepeat]){
+        thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
+        //thisBooking.tableSelector();
+        //thisBooking.starterSlector();
+      });
+    thisBooking.dom.formSubmitButton.addEventListener('click', function(){
+      event.preventDefault();
+      thisBooking.eventSender();
+    });
+
+  }
   parseData(bookings, eventsCurrent, eventsRepeat) {
     const thisBooking = this;
     thisBooking.booked = {};
@@ -101,7 +150,6 @@ export class Booking {
 
       for (let table of item.table) {
         thisBooking.makeBooked(item.date, item.hour, item.duration, table);
-
       }
     }
 
@@ -176,6 +224,7 @@ export class Booking {
 
     for(let table of thisBooking.dom.tables){
       table.addEventListener('click', function() {
+        console.log('click');
         if (!table.classList.contains(classNames.booking.tableBooked)){
           table.classList.toggle('active');
           thisBooking.newDate = thisBooking.date;
@@ -256,7 +305,7 @@ export class Booking {
             table.classList.remove('active');
           }
         }
-        thisBooking.getData();
+        thisBooking.updateData();
       });
   }
 }

@@ -285,29 +285,11 @@ input.error, select.error {
   font-style: italic;
 }
 
-/*.main-nav {
-  //position: absolute;
-  @include flex(row, flex-start, flex-start);
-  bottom: ($base-size * -8);
+.logo a {
+  color: #fff;
+  text-decoration: none;
+}
 
-  a {
-    @extend .h2;
-    color: $color-main;
-    text-decoration: none;
-    margin-right: ($base-size * 2);
-    text-align: center;
-    padding: $base-size ($base-size * 2);
-    background: darken($color-dark, 5%);
-    border-top-left-radius: $radius;
-    border-top-right-radius: $radius;
-
-    &.active {
-      background: lighten($color-dark, 75%);
-    }
-
-  }
-
-}*/
 .cart {
   position: absolute;
   width: 300px;
@@ -879,14 +861,16 @@ input.error, select.error {
 
 .nav-2 {
   position: absolute;
-  top: 105%;
+  top: 80%;
   left: 50%;
+  opacity: 0;
   transform: translate(-50%, -50%);
+  transition: top 2s, opacity 0.5s;
 }
 
 .nav-pic:hover .nav-2 {
   top: 60%;
-  transition: 2s;
+  opacity: 1;
 }
 
 .opening-inside {

@@ -62,12 +62,7 @@ const app = {
 
       });
       thisApp.activatePage(pagesMatchingHash.length ? pagesMatchingHash[0].id : thisApp.pages[0].id);
-      //const activated = document.querySelector('.home-div');
-      //activated.classList.add('hidden');
-
     }
-    //thisApp.activatePage(pagesMatchingHash.length ? pagesMatchingHash[0].id : thisApp.pages[0].id);
-
     for(let link of thisApp.navLinks){
       link.addEventListener('click', function(event){
         const clickedElement = this;

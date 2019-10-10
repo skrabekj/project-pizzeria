@@ -21,6 +21,7 @@ export class Product {
     const thisProduct = this;
     /*generate HTML based on template*/
     const generatedHTML = templates.menuProduct(thisProduct.data);
+    console.log(thisProduct.data);
     //console.log(generatedHTML);
     /*create element using utils.createElementFromHTML*/
     thisProduct.element = utils.createDOMFromHTML(generatedHTML);

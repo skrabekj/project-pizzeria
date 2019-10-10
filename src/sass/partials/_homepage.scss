@@ -30,13 +30,16 @@
 }
 .nav-2 {
   position: absolute;
-  top: 105%;
+  top: 80%;
   left: 50%;
+  opacity: 0;
   transform: translate(-50%,-50%);
+  transition: top 2s, opacity 0.5s;
 }
 .nav-pic:hover .nav-2 {
   top: 60%;
-  transition: 2s;
+  //transition: 2s;
+  opacity: 1;
 }
 .opening-inside {
   background-color: $color-main;
